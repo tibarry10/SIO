@@ -24,7 +24,7 @@ namespace WPF_Stage
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new MainWindowViewModel();
+            this.DataContext = new MainWindowViewModel(this);
         }
 
        

@@ -16,6 +16,7 @@ namespace WPF_Stage.ViewModels
         private int nombreSecret;
         private Random random;
         private int tentativesRestantes;
+        private MainWindow mainWindow1;
 
         public ICommand PropCommand { get; set; }
         public ICommand ResetCommand { get; set; }
@@ -28,18 +29,20 @@ namespace WPF_Stage.ViewModels
             set => SetProperty(ref hasFocus, value);
         }
 
-        // Propriété pour gérer la selection automatique
-        public bool PropositionSelectionnee
-        {
-            get => propositionSelectionnee;
-            set => SetProperty(ref propositionSelectionnee, value);
-        }
+        
 
         private string reponse;
         public string Reponse
         {
             get => reponse;
-            set => SetProperty(ref reponse, value);
+            set 
+            { 
+                if (SetProperty(ref reponse, value))
+                {
+                    OnPropertyChanged(nameof(CanReset)); // préviens la vue que CanReset a changé
+                    CommandManager.InvalidateRequerySuggested(); // Met à jour l'état de la commande PropCommand
+                } 
+            }
         }
         private string proposition;
         public string Proposition
@@ -78,14 +81,20 @@ namespace WPF_Stage.ViewModels
             get => tentativesRestantes;
             set => SetProperty(ref tentativesRestantes, value);
         }
-        public MainWindowViewModel()
+        public MainWindowViewModel(MainWindow MainWindow1)
         {
+            mainWindow1 = MainWindow1;
             PropCommand = new RelayCommand(OnProposition, OnPropositionCanExecute);
-            ResetCommand = new RelayCommand(OnReset);
+            ResetCommand = new RelayCommand(OnReset, CanAlwaysExecute);
             random = new Random();
             CommenceLeJeu();
         }
-        
+
+        private bool CanAlwaysExecute(object obj)
+        {
+            return true; // Le bouton Rejouer reste toujours activé
+        }
+
 
         private void CommenceLeJeu()
         {
@@ -96,14 +105,13 @@ namespace WPF_Stage.ViewModels
             Couleur = "Black";
             ImageSource = null;
 
-            HasFocus = false;
-            HasFocus = true; // donne le focus à la TextBox
-            PropositionSelectionnee = true;
         }
 
         private bool OnPropositionCanExecute(object obj)
         {
-            return !string.IsNullOrEmpty(proposition);
+            return !string.IsNullOrEmpty(proposition) &&
+                !Reponse.Contains("Bravo") &&
+                !Reponse.Contains("perdu");
         }
 
 
@@ -150,10 +158,11 @@ namespace WPF_Stage.ViewModels
                 Couleur = "Gray";
                 ImageSource = null;
             }
+            // Donne le focus et sélectionne tout dans la TextBox via la vue
+            mainWindow1.myTextBox.Focus();
+            mainWindow1.myTextBox.SelectAll();
 
-            // Forcer la sélection du texte
-            PropositionSelectionnee = false; //Réinitialiser la sélection
-            PropositionSelectionnee = true; //Re-sélectionner le nombre
+
         }
 
         private bool IsTextNumeric(string text)
@@ -161,10 +170,22 @@ namespace WPF_Stage.ViewModels
             return Regex.IsMatch(text, "^[0-9]*$"); // Accepte les chaines vides ou contenant uniquement que des chiffres
         }
 
+        public bool CanReset
+        {
+            get
+            {
+                // si le joueur a gagné ou perdu on autorise le reset
+                return Reponse.Contains("Bravo") || Reponse.Contains("perdu");
+            }
+        }
+
         //Rénitialiser la partie
         public void OnReset(object obj)
         {
             CommenceLeJeu();
+            // Donne le focus et sélectionne tout dans la TextBox via la vue
+            mainWindow1.myTextBox.Focus();
+            mainWindow1.myTextBox.SelectAll();
         }
     }
 }
