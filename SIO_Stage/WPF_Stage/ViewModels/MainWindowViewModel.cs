@@ -12,12 +12,29 @@ namespace WPF_Stage.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
+        private bool propositionSelectionnee;
         private int nombreSecret;
         private Random random;
         private int tentativesRestantes;
-        public string Nombre { get; set; } = "Entrer un nombre";
+
         public ICommand PropCommand { get; set; }
         public ICommand ResetCommand { get; set; }
+
+        //Indique si la TextBox doit avoir le focus.
+        private bool hasFocus;
+        public bool HasFocus
+        {
+            get => hasFocus;
+            set => SetProperty(ref hasFocus, value);
+        }
+
+        // Propriété pour gérer la selection automatique
+        public bool PropositionSelectionnee
+        {
+            get => propositionSelectionnee;
+            set => SetProperty(ref propositionSelectionnee, value);
+        }
+
         private string reponse;
         public string Reponse
         {
@@ -39,10 +56,7 @@ namespace WPF_Stage.ViewModels
         }
 
         //vérifie si une chaine contient uniquement des chiffres
-        private bool IsTextNumeric(string text)
-        {
-            return Regex.IsMatch(text, "^[0-9]*$"); // Accepte les chaines vides ou contenant uniquement que des chiffres
-        }
+       
 
         private string couleur;
         public string Couleur
@@ -71,11 +85,7 @@ namespace WPF_Stage.ViewModels
             random = new Random();
             CommenceLeJeu();
         }
-
-        private bool OnPropositionCanExecute(object obj)
-        {
-            return !string.IsNullOrEmpty(proposition);
-        }
+        
 
         private void CommenceLeJeu()
         {
@@ -84,6 +94,16 @@ namespace WPF_Stage.ViewModels
             Proposition = string.Empty;
             Reponse = string.Empty;
             Couleur = "Black";
+            ImageSource = null;
+
+            HasFocus = false;
+            HasFocus = true; // donne le focus à la TextBox
+            PropositionSelectionnee = true;
+        }
+
+        private bool OnPropositionCanExecute(object obj)
+        {
+            return !string.IsNullOrEmpty(proposition);
         }
 
 
@@ -130,6 +150,15 @@ namespace WPF_Stage.ViewModels
                 Couleur = "Gray";
                 ImageSource = null;
             }
+
+            // Forcer la sélection du texte
+            PropositionSelectionnee = false; //Réinitialiser la sélection
+            PropositionSelectionnee = true; //Re-sélectionner le nombre
+        }
+
+        private bool IsTextNumeric(string text)
+        {
+            return Regex.IsMatch(text, "^[0-9]*$"); // Accepte les chaines vides ou contenant uniquement que des chiffres
         }
 
         //Rénitialiser la partie

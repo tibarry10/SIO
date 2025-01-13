@@ -6,6 +6,22 @@
         xmlns:local="clr-namespace:WPF_Stage"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <!-- Style pour activer le focus dynamiquement -->
+        <Style TargetType="TextBox">
+            <Setter Property="Focusable" Value="True" />
+            <Style.Triggers>
+                <!-- Focus-->
+                <DataTrigger Binding="{Binding HasFocus}" Value="True">
+                    <Setter Property="FocusManager.FocusedElement" Value="{Binding RelativeSource={RelativeSource Self}}"/>
+                </DataTrigger>
+
+                <!-- Sélection automatique -->
+                
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,7 +38,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Devinez le nombre entre 1 et 10" FontSize="16" Margin="10" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="0" Text="Devinez le nombre entre 1 et 100" FontSize="16" Margin="10" HorizontalAlignment="Center" />
         <TextBlock Grid.Row="1" Text="Tentatives restantes : " FontSize="14" Margin="10" HorizontalAlignment="Center" />
         <TextBlock Grid.Row="2" Text="{Binding TentativesRestantes}" FontSize="14" Margin="10" HorizontalAlignment="Center" Foreground="Blue" />
         <TextBox Grid.Row="3" Text="{Binding Proposition, UpdateSourceTrigger=PropertyChanged}" FontSize="14" AcceptsReturn="False" Width="200" Margin="10" HorizontalAlignment="Center" />
