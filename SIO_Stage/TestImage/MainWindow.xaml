@@ -1,0 +1,57 @@
+﻿<Window x:Class="TestImage.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestImage"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Name="G1">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="1" Grid.Row="1" Background="White">
+            <Button.ToolTip>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Lila" VerticalAlignment="Center" FontSize="16" Foreground="Purple" />
+                    <Image Source="/images/lila.png" Width="100" />
+                </StackPanel>
+            </Button.ToolTip>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Lila" VerticalAlignment="Center" FontSize="16" Foreground="Purple" />
+                <Image Source="/images/lila.png" Width="100" />
+            </StackPanel>
+        </Button>
+        <ListBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Background="#458044" FontSize="22">
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/logo.png" Width="20" Margin="5,0"/>
+                    <TextBlock Text="Rosier rose tendre"/>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/logo.png" Width="20" Margin="5,0"/>
+                    <TextBlock Text="Rythme bonzaï"/>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/logo.png" Width="20" Margin="5,0"/>
+                    <TextBlock Text="Ambiance rose"/>
+                </StackPanel>
+            </ListBoxItem>
+        </ListBox>
+        <Button Grid.Column="1" Background="White" ToolTip="Présentation de la rose">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Rose" VerticalAlignment="Center" FontSize="16" Foreground="Red" />
+                <Image Source="/images/rose.png" Width="50" />
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>
