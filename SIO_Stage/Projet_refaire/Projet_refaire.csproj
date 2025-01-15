@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C73D8E4D-AF45-44D1-AC09-4BB4EEB53DC9}</ProjectGuid>
+    <ProjectGuid>{3C1C8F05-5C56-464A-A2FA-00997C4929C1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WPF_Stage</RootNamespace>
-    <AssemblyName>WPF_Stage</AssemblyName>
+    <RootNamespace>Projet_refaire</RootNamespace>
+    <AssemblyName>Projet_refaire</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -63,7 +63,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Common\Texte.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -98,15 +97,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Images\trop_petit.png" />
+    <Resource Include="Images\fond.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\gagne.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\trop_grand.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\fond.jpg" />
-    <Resource Include="Images\gagne.jpg" />
+    <Resource Include="Images\trop_petit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
