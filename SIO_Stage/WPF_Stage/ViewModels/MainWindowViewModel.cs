@@ -8,7 +8,6 @@ namespace WPF_Stage.ViewModels
     class MainWindowViewModel : ViewModelBase
     {
         #region Propriétés
-        private bool PropositionSelectionnee;
         private int NombreSecret;
         private Random Alea;
         private MainWindow MainWindow1;
