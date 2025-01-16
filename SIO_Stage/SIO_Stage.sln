@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Stage", "WPF_Stage\WPF_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projet_refaire", "Projet_refaire\Projet_refaire.csproj", "{3C1C8F05-5C56-464A-A2FA-00997C4929C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projet_refaire2", "Projet_refaire2\Projet_refaire2.csproj", "{EF71D0FD-1B49-4D53-B625-63CD3F568F25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3C1C8F05-5C56-464A-A2FA-00997C4929C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C1C8F05-5C56-464A-A2FA-00997C4929C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C1C8F05-5C56-464A-A2FA-00997C4929C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF71D0FD-1B49-4D53-B625-63CD3F568F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF71D0FD-1B49-4D53-B625-63CD3F568F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF71D0FD-1B49-4D53-B625-63CD3F568F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF71D0FD-1B49-4D53-B625-63CD3F568F25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
