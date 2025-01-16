@@ -92,6 +92,7 @@ namespace Projet_refaire.ViewModels
 
         #region Bindings
         public string Reponse
+
         {
             get => _Reponse;
             set => SetProperty(ref _Reponse, value);

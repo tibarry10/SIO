@@ -21,7 +21,7 @@ namespace Projet_refaire2.ViewModels
 
 
         #region Command
-        private ICommand OkCommand { get; set; }
+        public ICommand OkCommand { get; set; }
         private void OkExecute(object obj)
         {
             _FinPartie = false;
@@ -83,7 +83,7 @@ namespace Projet_refaire2.ViewModels
             return !string.IsNullOrEmpty(Proposition) && !_FinPartie;
         }
 
-        private ICommand RejouerCommand { get; set; }
+        public ICommand RejouerCommand { get; set; }
         private void RejouerExecute(object obj)
         {
             Init();

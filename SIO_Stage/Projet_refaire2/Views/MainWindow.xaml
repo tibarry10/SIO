@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_refaire2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        FocusManager.FocusedElement="{Binding ElementName=myTextBox}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -22,7 +23,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Devinez un nombre entre 1 et 99" />
+        <TextBlock Grid.Row="0" Text="Devinez un nombre entre 1 et 99" FontSize="16"/>
         <TextBlock Grid.Row="1" Text="Tentatives Restantes:" />
         <TextBlock Grid.Row="2" Text="{Binding TentativesRestantes}" />
         <TextBox x:Name="myTextBox" Grid.Row="3" Text="{Binding Proposition, UpdateSourceTrigger=PropertyChanged}"/>
