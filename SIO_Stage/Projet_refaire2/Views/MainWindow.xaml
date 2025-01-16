@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_refaire2"
+        xmlns:properties="clr-namespace:Projet_refaire2.Properties"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="450" Width="450"
+        MinHeight="400" MinWidth="400"
         FocusManager.FocusedElement="{Binding ElementName=myTextBox}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,14 +25,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Devinez un nombre entre 1 et 99" FontSize="16"/>
-        <TextBlock Grid.Row="1" Text="Tentatives Restantes:" />
-        <TextBlock Grid.Row="2" Text="{Binding TentativesRestantes}" />
-        <TextBox x:Name="myTextBox" Grid.Row="3" Text="{Binding Proposition, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button Grid.Row="4" x:Name="BtnOK" Content="OK" Command="{Binding OkCommand}" IsDefault="{Binding DefaultOk}"/>
-        <Button Grid.Row="5" x:Name="BtnRejouer" Content="Rejouer" Command="{Binding RejouerCommand}" IsDefault="{Binding DefaultRejouer}"/>
-        <TextBlock Grid.Row="6" Text="{Binding Reponse}" />
-        <Image Source="{Binding ImageSource}" />
+        <TextBlock Grid.Row="0" Text="{Binding Libelle}" FontSize="16" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Text="Tentatives Restantes:" FontSize="16" HorizontalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Row="2" Text="{Binding TentativesRestantes}" FontSize="16" HorizontalAlignment="Center" Margin="10" Foreground="Blue"/>
+        <TextBox x:Name="myTextBox" Grid.Row="3"
+                 MaxLength="{Binding Source={x:Static properties:Settings.Default}, Path=NChiffres, Mode=OneTime}"
+                 Text="{Binding Proposition, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Margin="10" FontSize="16" HorizontalAlignment="Center" Width="70"/>
+        <Button Grid.Row="4" x:Name="BtnOK" Content="OK" Command="{Binding OkCommand}" IsDefault="{Binding DefaultOk}" Width="70"/>
+        <Button Grid.Row="5" x:Name="BtnRejouer" Content="Rejouer" Command="{Binding RejouerCommand}" IsDefault="{Binding DefaultRejouer}" Margin="10" Width="70"/>
+        <TextBlock Grid.Row="6" Text="{Binding Reponse}" Margin="10" FontSize="16" HorizontalAlignment="Center" TextAlignment="Center" Foreground="{Binding Couleur}"/>
+        <Image Grid.Row="7" Source="{Binding ImageSource}" Height="100" HorizontalAlignment="Center"/>
 
     </Grid>
 </Window>

@@ -23,7 +23,7 @@ namespace Projet_refaire.ViewModels
             if (int.TryParse(Proposition, out int nombreUtilisateur)) // Vérifie si la proposition est un nombre
             {
                 TentativeRestantes--;
-                if (TentativeRestantes < 0)
+                if (TentativeRestantes <= 0)
                 {
                     Reponse = $"Vous avez perdu ! Le nombre était {_NombreSecret}. \nVoulez-vous rejouer ?";
                     Couleur = "Red";

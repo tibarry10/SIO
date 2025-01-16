@@ -24,7 +24,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Devinez un nombre entre 1 et 100" FontSize="16" Margin="0" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="0" Text="{Binding Libelle}" FontSize="16" Margin="0" HorizontalAlignment="Center" />
         <TextBlock Grid.Row="1" Text="Tentatives restantes: " FontSize="16" Margin="10" HorizontalAlignment="Center" />
         <TextBlock Grid.Row="2" Text="{Binding TentativeRestantes}" FontSize="16" HorizontalAlignment="Center" Foreground="Blue" />
         <TextBox Grid.Row="3" 

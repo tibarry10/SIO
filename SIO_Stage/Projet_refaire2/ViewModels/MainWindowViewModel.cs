@@ -28,7 +28,7 @@ namespace Projet_refaire2.ViewModels
             if (int.TryParse(Proposition, out int nombreUtilisateur))
             {
                 TentativesRestantes--;
-                if (nombreUtilisateur < 0)
+                if (TentativesRestantes <= 0)
                 {
                     Reponse = $"Vous avez perdu ! le nombre était {_NombreSecret}. \nVoulez-vous rejouer ?";
                     Couleur = "Red";
@@ -87,6 +87,9 @@ namespace Projet_refaire2.ViewModels
         private void RejouerExecute(object obj)
         {
             Init();
+            DefaultOk = false;
+            DefaultRejouer = true;
+            CommandManager.InvalidateRequerySuggested(); // Actualise les commandes
         }
 
 
@@ -107,6 +110,7 @@ namespace Projet_refaire2.ViewModels
                 if (string.IsNullOrEmpty(value) || value.IsNumeric())
                 {
                     SetProperty(ref _Proposition, value);
+                    CommandManager.InvalidateRequerySuggested(); // Actualise les commandes
                 }
             }
         }
@@ -171,6 +175,9 @@ namespace Projet_refaire2.ViewModels
             OkCommand = new RelayCommand(OkExecute, OkCanExecute);
             RejouerCommand = new RelayCommand(RejouerExecute, RejouerCanExecute);
             Libelle = $"Devinez le nombre entre {Settings.Default.Min} et {Settings.Default.Max}";
+            _Random = new Random();
+            Init();
+
         }
         private void Init()
         {
