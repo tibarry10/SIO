@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_refaire"
+        xmlns:prop="clr-namespace:Projet_refaire.Properties"
         mc:Ignorable="d"
         Title="Jeu Devine Nombre" Height="450" Width="450"
+        Background="{Binding Source={x:Static prop:Settings.Default}, Path=CouleurFond, Mode=OneTime}"
         FocusManager.FocusedElement="{Binding ElementName=myTextBox}"
         MinHeight="400" MinWidth="400">
     <Grid>
@@ -25,7 +27,9 @@
         <TextBlock Grid.Row="0" Text="Devinez un nombre entre 1 et 100" FontSize="16" Margin="0" HorizontalAlignment="Center" />
         <TextBlock Grid.Row="1" Text="Tentatives restantes: " FontSize="16" Margin="10" HorizontalAlignment="Center" />
         <TextBlock Grid.Row="2" Text="{Binding TentativeRestantes}" FontSize="16" HorizontalAlignment="Center" Foreground="Blue" />
-        <TextBox Grid.Row="3" x:Name="myTextBox" Text="{Binding Proposition, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="10" Width="70" HorizontalAlignment="Center" TextAlignment="Center" />
+        <TextBox Grid.Row="3" 
+                 MaxLength="{Binding Source={x:Static prop:Settings.Default}, Path=NChiffres, Mode=OneTime}" 
+                 x:Name="myTextBox" Text="{Binding Proposition, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="10" Width="70" HorizontalAlignment="Center" TextAlignment="Center" />
         <Button Content="Ok" x:Name="BtnOk" Grid.Row="4" Command="{Binding OkCommand}" IsDefault="{Binding DefaultOk}" FontSize="14" HorizontalAlignment="Center" Width="70" />
         <Button Content="Rejouer" x:Name="BtnRejouer" Grid.Row="5" Command="{Binding RejouerCommand}" IsDefault="{Binding DefaultRejouer}" FontSize="16" Margin="10" Width="70" VerticalAlignment="Center" />
         <TextBlock Grid.Row="6" Text="{Binding Reponse}" FontSize="16" Margin="10" HorizontalAlignment="Center" TextAlignment="Center" Foreground="{Binding Couleur}" />

@@ -11,5 +11,11 @@
     <Setting Name="CoupMax" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">7</Value>
     </Setting>
+    <Setting Name="NChiffres" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="CouleurFond" Type="System.String" Scope="User">
+      <Value Profile="(Default)">LightYellow</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
