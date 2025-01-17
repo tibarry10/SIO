@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projet_refaire", "Projet_re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projet_refaire2", "Projet_refaire2\Projet_refaire2.csproj", "{EF71D0FD-1B49-4D53-B625-63CD3F568F25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chifoumi", "Chifoumi\Chifoumi.csproj", "{23884FEC-0672-40B4-B5A2-D4FEF5BA454E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{EF71D0FD-1B49-4D53-B625-63CD3F568F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF71D0FD-1B49-4D53-B625-63CD3F568F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF71D0FD-1B49-4D53-B625-63CD3F568F25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23884FEC-0672-40B4-B5A2-D4FEF5BA454E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23884FEC-0672-40B4-B5A2-D4FEF5BA454E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23884FEC-0672-40B4-B5A2-D4FEF5BA454E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23884FEC-0672-40B4-B5A2-D4FEF5BA454E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
