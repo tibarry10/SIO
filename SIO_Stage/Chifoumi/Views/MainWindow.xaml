@@ -5,30 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chifoumi"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Chifoumi Game" Height="500" Width="800"
+        MinHeight="500" MinWidth="800">
+    <Grid Background="#F0F4F8">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height = "Auto" />
-            <RowDefinition Height = "Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Image Grid.Column="0" Grid.Row="0" Source="{Binding ImageSource}" />
-        <Image Grid.Column="1" Grid.Row="0" Source="{Binding ImageSource}" />
-        <Image Grid.Column="2" Grid.Row="0" Source="{Binding ImageSource}" />
 
-        <Button Grid.Column="2" Grid.Row="3" x:Name="BtnPierre" Content="Pierre" Command="{Binding PierreCommand}" />
-        <Button Grid.Column="2" Grid.Row="4" x:Name="BtnFeuille" Content="Feuille" Command="{Binding FeuilleCommand}" />
-        <Button Grid.Column="2" Grid.Row="5" x:Name="BtnCiseau" Content="Ciseau" Command="{Binding CiseauCommand}" />
-        <TextBlock Grid.Row="3" Text="{Binding Score}" TextAlignment="Center" />
-        <TextBlock Grid.Row="6" Text="{Binding Reponse}" />
+        <!-- Images des choix -->
+        <Border Grid.Column="0" Grid.Row="0" BorderBrush="Black" BorderThickness="2" Margin="5">
+            <Image Source="{Binding ImagePierre}" Stretch="Uniform"/>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="0" BorderBrush="Black" BorderThickness="2" Margin="5">
+            <Image Source="{Binding ImageFeuille}" Stretch="Uniform"/>
+        </Border>
+        <Border Grid.Column="2" Grid.Row="0" BorderBrush="Black" BorderThickness="2" Margin="5">
+            <Image Source="{Binding ImageCiseau}" Stretch="Uniform"/>
+        </Border>
 
+        <!-- Boutons de choix -->
+        <Button Grid.Column="0" Grid.Row="1" Command="{Binding PierreCommand}" Margin="5">
+            <StackPanel Orientation="Vertical">
+                <Image Source="../images/Pierre.png" Height="50" Width="50"/>
+                <TextBlock Text="Pierre" TextAlignment="Center" FontSize="16" FontWeight="Bold" />
+            </StackPanel>
+        </Button>
+        <Button Grid.Column="1" Grid.Row="1" Command="{Binding FeuilleCommand}" Margin="5">
+            <StackPanel Orientation="Vertical">
+                <Image Source="../images/Feuille.png" Height="50" Width="50"/>
+                <TextBlock Text="Feuille" TextAlignment="Center" FontSize="16" FontWeight="Bold" />
+            </StackPanel>
+        </Button>
+        <Button Grid.Column="2" Grid.Row="1" Command="{Binding CiseauCommand}" Margin="5">
+            <StackPanel Orientation="Vertical">
+                <Image Source="../images/Ciseau.png" Height="50" Width="50"/>
+                <TextBlock Text="Ciseau" TextAlignment="Center" FontSize="16" FontWeight="Bold" />
+            </StackPanel>
+        </Button>
 
+        <!-- Titre Score -->
+        <TextBlock Grid.Column="3" Grid.Row="0" Text="Score" 
+                   FontSize="24" FontWeight="Bold" Foreground="#333"
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" />
 
+        <!-- Score utilisateur et machine -->
+        <TextBlock Grid.Column="3" Grid.Row="1" TextAlignment="Center" VerticalAlignment="Top" FontSize="40" Margin="10">
+            <Run Text="{Binding ScoreUtilisateur}" Foreground="Green" FontWeight="Bold"/>
+            <Run Text=" - " />
+            <Run Text="{Binding ScoreMachine}" Foreground="Red" FontWeight="Bold"/>
+        </TextBlock>
+
+        <!-- Message résultat -->
+        <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Text="{Binding Reponse}" 
+                   TextAlignment="Center" VerticalAlignment="Center" 
+                   FontSize="24" TextWrapping="Wrap" Margin="10" Foreground="Red" />
+
+        <!-- Bouton Rejouer -->
+        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" Command="{Binding RejouerCommand}" 
+                Content="Rejouer" FontSize="18" FontWeight="Bold" Background="#4CAF50" 
+                Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                Margin="20" Width="200" Height="50" BorderThickness="0" />
     </Grid>
 </Window>
