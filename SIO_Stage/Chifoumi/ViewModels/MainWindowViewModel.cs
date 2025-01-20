@@ -11,6 +11,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Chifoumi.ViewModels
 {
+    public enum ChoixEnum { Pierre, Feuille, Ciseau}
     class MainWindowViewModel : ViewModelBase
     {
         #region champs privés
@@ -23,36 +24,8 @@ namespace Chifoumi.ViewModels
         public ICommand PierreCommand { get; set; }
         private void PierreExecute(object obj)
         {
-            Jeu(1);
-            //if (_FinPartie) return; // Si la partie est terminée, ne rien faire
-
-            //_PropHasard = _Random.Next(1, 4);
-
-            //// Réinitialiser toutes les images à leurs versions grisées
-            //ImagePierre = "../images/Pierre2.png";
-            //ImageFeuille = "../images/Feuille2.png";
-            //ImageCiseau = "../images/Ciseau2.png";
-
-            //if (_PropHasard == 1) // Machine choisit Pierre
-            //{
-            //    ImagePierre = "../images/Pierre.png"; // Remettre la version normale
-            //    Reponse = "Égalité !";
-            //}
-            //else if (_PropHasard == 2) // Machine choisit Feuille
-            //{
-            //    ImageFeuille = "../images/Feuille.png"; // Remettre la version normale
-            //    Reponse = "La machine gagne !";
-            //    ScoreMachine++;
-            //}
-            //else if (_PropHasard == 3) // Machine choisit Ciseau
-            //{
-            //    ImageCiseau = "../images/ciseau.png"; // Remettre la version normale
-            //    Reponse = "Vous gagnez !";
-            //    ScoreUtilisateur++;
-
-            //}
-
-            //VerifierFindePartie();
+            Jeu(ChoixEnum.Pierre);
+            
         }
         private bool PierreCanExecute(object obj)
         {
@@ -62,33 +35,7 @@ namespace Chifoumi.ViewModels
         public ICommand FeuilleCommand { get; set; }
         private void FeuilleExecute(object obj)
         {
-            Jeu(2);
-            //if (_FinPartie) return; // Si la partie est terminée, ne rien faire
-
-            //_PropHasard = _Random.Next(1, 4);
-
-            //// Réinitialiser toutes les images à leurs versions grisées
-            //ImagePierre = "../images/Pierre2.png";
-            //ImageFeuille = "../images/Feuille2.png";
-            //ImageCiseau = "../images/Ciseau2.png";
-
-            //if (_PropHasard == 1) 
-            //{
-            //    ImagePierre = "../images/Pierre.png";
-            //    Reponse = "Vous gagnez";
-            //    ScoreUtilisateur++;
-            //}
-            //else if (_PropHasard == 2) 
-            //{
-            //    ImageFeuille = "../images/Feuille.png";
-            //    Reponse = "Égalité !";
-            //}
-            //else if (_PropHasard == 3) 
-            //{
-            //    ImageCiseau = "../images/ciseau.png";
-            //    Reponse = "La machine gagne !";
-            //    ScoreMachine++;
-            //}
+            Jeu(ChoixEnum.Feuille);
 
         }
         private bool FeuilleCanExecute(object obj)
@@ -99,35 +46,7 @@ namespace Chifoumi.ViewModels
         public ICommand CiseauCommand { get; set; }
         private void CiseauExecute(object obj)
         {
-            Jeu(3);
-            //if (_FinPartie) return;
-
-            //_PropHasard = _Random.Next(1, 4);
-
-            //// Réinitialiser toutes les images à leurs versions grisées
-            //ImagePierre = "../images/Pierre2.png";
-            //ImageFeuille = "../images/Feuille2.png";
-            //ImageCiseau = "../images/Ciseau2.png";
-
-            //if (_PropHasard == 1)
-            //{
-            //    ImagePierre = "../images/Pierre.png";
-            //    Reponse = "La machine gagne !";
-            //    ScoreMachine++;
-            //}
-            //else if (_PropHasard == 2)
-            //{
-            //    ImageFeuille = "../images/Feuille.png";
-            //    Reponse = "Vous gagnez !";
-            //    ScoreUtilisateur++;
-            //}
-            //else if (_PropHasard == 3)
-            //{
-            //    ImageCiseau = "../images/ciseau.png";
-            //    Reponse = "Égalité !";
-            //}
-
-            //VerifierFindePartie();
+            Jeu(ChoixEnum.Ciseau);
         }
         private bool CiseauCanExecute(object obj)
         {
@@ -148,34 +67,50 @@ namespace Chifoumi.ViewModels
             ImageCiseau = "../images/ciseau.png";
         }
 
-        private void Jeu(int choixUtilisateur)
+        private void Jeu(ChoixEnum choixUtilisateur)
         {
             if (_FinPartie) return; // Si la partie est terminée, ne rien faire
 
-            var choixMachine = _Random.Next(1, 4);
+            ChoixEnum choixMachine = (ChoixEnum)_Random.Next(0, 3);
 
             // Réinitialiser toutes les images à leurs versions grisées
             ImagePierre = "../images/Pierre2.png";
             ImageFeuille = "../images/Feuille2.png";
             ImageCiseau = "../images/Ciseau2.png";
-
-            if (choixMachine == 1)
+            switch (choixMachine)
             {
-                ImagePierre = "../images/Pierre.png";
+                case ChoixEnum.Pierre: ImagePierre = "../images/Pierre.png"; break;
+                case ChoixEnum.Feuille: ImageFeuille = "../images/Feuille.png"; break;
+                case ChoixEnum.Ciseau: ImageCiseau = "../images/Ciseau.png"; break;
+
+            }
+
+            // Affectation des points
+            if (choixUtilisateur == choixMachine)
+            {
+                Reponse = "Egalité";
+                ScoreUtilisateur = 0;
+                ScoreMachine = 0;
+                
+            }
+
+            else if ((choixUtilisateur == ChoixEnum.Pierre && choixMachine == ChoixEnum.Ciseau) ||
+                (choixUtilisateur == ChoixEnum.Feuille  && choixMachine == ChoixEnum.Pierre ) || 
+                (choixUtilisateur == ChoixEnum.Ciseau && choixMachine == ChoixEnum.Feuille))
+            {
                 Reponse = "Vous gagnez";
                 ScoreUtilisateur++;
+                ScoreMachine = 0;
+
             }
-            else if (choixMachine == 2)
+            else
             {
-                ImageFeuille = "../images/Feuille.png";
-                Reponse = "Égalité !";
-            }
-            else if (choixMachine == 3)
-            {
-                ImageCiseau = "../images/ciseau.png";
                 Reponse = "La machine gagne !";
                 ScoreMachine++;
+                ScoreUtilisateur = 0;
             }
+
+            VerifierFindePartie();
         }
         #endregion
 
