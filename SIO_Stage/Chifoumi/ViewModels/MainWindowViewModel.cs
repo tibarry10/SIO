@@ -74,7 +74,7 @@ namespace Chifoumi.ViewModels
             {
                 ImagePierre = "../images/Pierre.png";
                 Reponse = "Vous gagnez";
-                ScoreMachine++;
+                ScoreUtilisateur++;
             }
             else if (_PropHasard == 2) 
             {
@@ -85,7 +85,7 @@ namespace Chifoumi.ViewModels
             {
                 ImageCiseau = "../images/ciseau.png";
                 Reponse = "La machine gagne !";
-                ScoreUtilisateur++;
+                ScoreMachine++;
             }
 
         }
@@ -114,13 +114,13 @@ namespace Chifoumi.ViewModels
             }
             else if (_PropHasard == 2)
             {
-                ImageFeuille = "../images.Feuille.png";
+                ImageFeuille = "../images/Feuille.png";
                 Reponse = "Vous gagnez !";
                 ScoreUtilisateur++;
             }
             else if (_PropHasard == 3)
             {
-                ImageCiseau = "../images.ciseau.png";
+                ImageCiseau = "../images/ciseau.png";
                 Reponse = "Égalité !";
             }
 
